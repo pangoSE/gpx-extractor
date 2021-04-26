@@ -74,7 +74,7 @@ $(document).ready(function () {
 	// source https://w3lessons.info/autocomplete-search-using-wikipedia-api-and-jquery-ui/
         source: function(request, response) {
             $.ajax({
-		url: "http://en.wikipedia.org/w/api.php",
+		url: "https://en.wikipedia.org/w/api.php",
 		dataType: "jsonp",
 		data: {
                     'action': "opensearch",
