@@ -10,8 +10,36 @@ serve result to user
 */
 var choiceList = [
     {
-	title: "huts and shelters",
-	query: '(nwr["access"!="private"]["tourism"="alpine_hut"](area.searchArea);nwr["access"!="private"]["tourism"="wilderness_hut"](area.searchArea);nwr["access"!="private"]["amenity"="shelter"]["shelter_type"!="public_transport"]["public_transport"!~".*"]["leisure"!="bird_hide"](area.searchArea););'
+	title: "huts and shelters only",
+	query: '(nwr["access"!="private"]["tourism"="alpine_hut"](area.searchArea);'+
+	    'nwr["access"!="private"]["tourism"="wilderness_hut"](area.searchArea);'+
+	    'nwr["access"!="private"]["amenity"="shelter"]["shelter_type"!="public_transport"]["public_transport"!~".*"]["leisure"!="bird_hide"](area.searchArea););'
+    },
+    {
+	title: "huts, shelters, barbecues and firepits",
+	query: '('+  // Start union
+	    // Get barbecues
+	    'nw["access"!="private"]["amenity"="bbq"](area.searchArea);'+
+	    // Get firepits
+	    'nw["access"!="private"]["leisure"="firepit"](area.searchArea);'+
+	    // Get alpine huts
+	    'nw["access"!="private"]["tourism"="alpine_hut"](area.searchArea);'+
+	    // Get wilderness huts
+	    'nw["access"!="private"]["tourism"="wilderness_hut"](area.searchArea);'+
+	    // Get shelters <3
+	    'nw["access"!="private"]["amenity"="shelter"]'+
+	    // but not these kinds of shelters which are not suitable for hikers that want to sleep
+	    '["shelter_type"!="public_transport"]["public_transport"!~".*"]["leisure"!="bird_hide"](area.searchArea);'+
+	    ');'+  // End union
+    },
+    {
+	title: "barbecues and firepits",
+	query: '('+  // Start union
+	    // Get barbecues
+	    'nw["access"!="private"]["amenity"="bbq"](area.searchArea);'+
+	    // Get firepits
+	    'nw["access"!="private"]["leisure"="firepit"](area.searchArea);'+
+	    ');'+  // End union
     },
     {
 	title: "huts and shelters, chalets, apartments, B&Bs, hostels and hotels",
