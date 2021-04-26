@@ -30,7 +30,7 @@ var choiceList = [
 	    'nw["access"!="private"]["amenity"="shelter"]'+
 	    // but not these kinds of shelters which are not suitable for hikers that want to sleep
 	    '["shelter_type"!="public_transport"]["public_transport"!~".*"]["leisure"!="bird_hide"](area.searchArea);'+
-	    ');'+  // End union
+	    ');'  // End union
     },
     {
 	title: "barbecues and firepits",
@@ -39,7 +39,7 @@ var choiceList = [
 	    'nw["access"!="private"]["amenity"="bbq"](area.searchArea);'+
 	    // Get firepits
 	    'nw["access"!="private"]["leisure"="firepit"](area.searchArea);'+
-	    ');'+  // End union
+	    ');'  // End union
     },
     {
 	title: "huts and shelters, chalets, apartments, B&Bs, hostels and hotels",
